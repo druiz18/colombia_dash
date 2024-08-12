@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-function AtracTuristicas(url) {
+function Consulta2(url) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         fetch(url)
             .then(response => response.json())
-            .then(data => {
+            .then((data) => {
                 const departamentos = {};
 
                 data.forEach(atraccion => {
-                    const departmentName = atraccion.city.department.name;
+                    const departmentName = atraccion.department;
                     const cityName = atraccion.city.name;
 
                     if (!departamentos[departmentName]) {
@@ -63,9 +63,6 @@ function AtracTuristicas(url) {
                                 {city.attractions.map((attraction, attrIndex) => (
                                     <li key={attrIndex}>
                                         <h4>{attraction.name}</h4>
-                                        <p>{attraction.description}</p>
-                                        <p>Latitud: {attraction.latitude}, Longitud: {attraction.longitude}</p>
-                                        <img src={attraction.images[0]} alt={attraction.name} />
                                     </li>
                                 ))}
                             </ul>
@@ -77,4 +74,4 @@ function AtracTuristicas(url) {
     );
 }
 
-export default AtracTuristicas;
+export default Consulta2;
